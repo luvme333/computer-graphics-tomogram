@@ -48,6 +48,11 @@ namespace computer_graphics_tomogram
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             currentLayer = trackBar1.Value;
+            if (loaded)
+            {
+                view.DrawQuads(currentLayer);
+                glControl1.SwapBuffers();
+            }
         }
     }
 }

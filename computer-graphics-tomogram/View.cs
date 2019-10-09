@@ -16,7 +16,7 @@ namespace computer_graphics_tomogram
             GL.ShadeModel(ShadingModel.Smooth);
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
-            GL.Ortho(0, Bin.x, 0, Bin.y, -1, -1);
+            GL.Ortho(0, Bin.x, 0, Bin.y, -1, 1);
             GL.Viewport(0, 0, width, height);
         }
 
