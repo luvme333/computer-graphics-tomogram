@@ -32,6 +32,9 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.режимВизуализацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.четырехугольникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.текстуройToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +52,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.открытьToolStripMenuItem});
+            this.открытьToolStripMenuItem,
+            this.режимВизуализацииToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(959, 24);
@@ -71,6 +75,29 @@
             this.trackBar1.TabIndex = 2;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
+            // режимВизуализацииToolStripMenuItem
+            // 
+            this.режимВизуализацииToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.четырехугольникиToolStripMenuItem,
+            this.текстуройToolStripMenuItem});
+            this.режимВизуализацииToolStripMenuItem.Name = "режимВизуализацииToolStripMenuItem";
+            this.режимВизуализацииToolStripMenuItem.Size = new System.Drawing.Size(136, 20);
+            this.режимВизуализацииToolStripMenuItem.Text = "Режим визуализации";
+            // 
+            // четырехугольникиToolStripMenuItem
+            // 
+            this.четырехугольникиToolStripMenuItem.Name = "четырехугольникиToolStripMenuItem";
+            this.четырехугольникиToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.четырехугольникиToolStripMenuItem.Text = "Четырехугольники";
+            this.четырехугольникиToolStripMenuItem.Click += new System.EventHandler(this.четырехугольникиToolStripMenuItem_Click);
+            // 
+            // текстуройToolStripMenuItem
+            // 
+            this.текстуройToolStripMenuItem.Name = "текстуройToolStripMenuItem";
+            this.текстуройToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.текстуройToolStripMenuItem.Text = "Текстурой";
+            this.текстуройToolStripMenuItem.Click += new System.EventHandler(this.текстуройToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -82,6 +109,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -96,6 +124,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
         private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.ToolStripMenuItem режимВизуализацииToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem четырехугольникиToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem текстуройToolStripMenuItem;
     }
 }
 

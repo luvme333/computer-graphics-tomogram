@@ -14,12 +14,36 @@ namespace computer_graphics_tomogram
     {
         Bin bin = new Bin();
         View view = new View();
-        private bool loaded;
+        bool needReload = true;
+        private bool loaded = false;
         private int currentLayer = 0;
+        private int FrameCount;
+        private int switchMode = 0;
+        DateTime NextFPSUpdate = DateTime.Now.AddSeconds(1);
 
         public Form1()
         {
             InitializeComponent();
+        }
+
+        void Application_Idle(object sender, EventArgs e)
+        {
+            while(glControl1.IsIdle)
+            {
+                displayFPS();
+                glControl1.Invalidate();
+            }
+        }
+
+        void displayFPS()
+        {
+            if (DateTime.Now >= NextFPSUpdate)
+            {
+                this.Text = String.Format("CT Visualizer (fps={0})", FrameCount);
+                NextFPSUpdate = DateTime.Now.AddSeconds(1);
+                FrameCount = 0;
+            }
+            FrameCount++;
         }
 
         private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -40,7 +64,20 @@ namespace computer_graphics_tomogram
         {
             if (loaded)
             {
-                view.DrawQuads(currentLayer);
+                if (switchMode == 0)
+                {
+                    if (needReload)
+                    {
+                        view.generateTextureImage(currentLayer);
+                        view.Load2DTexture();
+                        needReload = false;
+                    }
+                    view.DrawTexture();
+                }
+                if (switchMode == 1)
+                {
+                    view.DrawQuads(currentLayer);
+                }
                 glControl1.SwapBuffers();
             }
         }
@@ -48,11 +85,25 @@ namespace computer_graphics_tomogram
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             currentLayer = trackBar1.Value;
-            if (loaded)
-            {
-                view.DrawQuads(currentLayer);
-                glControl1.SwapBuffers();
-            }
+            needReload = true;
+            /*view.DrawQuads(currentLayer);
+            glControl1.SwapBuffers();*/
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Application.Idle += Application_Idle;
+        }
+
+        private void четырехугольникиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switchMode = 1;
+        }
+
+        private void текстуройToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switchMode = 0;
+            needReload = true;
         }
     }
 }
