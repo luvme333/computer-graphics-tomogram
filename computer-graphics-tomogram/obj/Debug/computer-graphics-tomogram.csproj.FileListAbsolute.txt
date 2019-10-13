@@ -1,0 +1,17 @@
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\bin\Debug\computer-graphics-tomogram.exe.config
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\bin\Debug\computer-graphics-tomogram.exe
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\bin\Debug\computer-graphics-tomogram.pdb
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\bin\Debug\OpenTK.dll
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\bin\Debug\OpenTK.GLControl.dll
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\bin\Debug\OpenTK.pdb
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\bin\Debug\OpenTK.xml
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\bin\Debug\OpenTK.GLControl.pdb
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\bin\Debug\OpenTK.GLControl.xml
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\obj\Debug\computer-graphics-tomogram.csprojAssemblyReference.cache
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\obj\Debug\computer_graphics_tomogram.Form1.resources
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\obj\Debug\computer_graphics_tomogram.Properties.Resources.resources
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\obj\Debug\computer-graphics-tomogram.csproj.GenerateResource.cache
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\obj\Debug\computer-graphics-tomogram.csproj.CoreCompileInputs.cache
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\obj\Debug\computer-graphics-tomogram.csproj.CopyComplete
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\obj\Debug\computer-graphics-tomogram.exe
+C:\Users\anton.000\source\repos\computer-graphics-tomogram\computer-graphics-tomogram\obj\Debug\computer-graphics-tomogram.pdb

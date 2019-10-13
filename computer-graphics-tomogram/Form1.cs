@@ -105,5 +105,17 @@ namespace computer_graphics_tomogram
             switchMode = 0;
             needReload = true;
         }
+
+        private void TrackBar2_Scroll(object sender, EventArgs e)
+        {
+            view.Minimum = trackBar2.Value;
+            needReload = true;
+        }
+
+        private void TrackBar3_Scroll(object sender, EventArgs e)
+        {
+            view.Width = trackBar3.Value;
+            needReload = true;
+        }
     }
 }

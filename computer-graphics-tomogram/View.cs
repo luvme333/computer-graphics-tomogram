@@ -12,6 +12,8 @@ namespace computer_graphics_tomogram
 {
     class View
     {
+        public int Minimum= 0;
+        public int Width = 2000;
         public void setupView(int width, int height)
         {
             GL.ShadeModel(ShadingModel.Smooth);
@@ -27,8 +29,8 @@ namespace computer_graphics_tomogram
         }
         Color TranserFunction(short value)
         {
-            int min = 0;
-            int max = 2000;
+            int min = Minimum;
+            int max = Minimum + Width;
             int newValue = clamp((value - min) * 255 / (max - min), 0, 255);
             return Color.FromArgb(255, newValue, newValue, newValue);
         }
