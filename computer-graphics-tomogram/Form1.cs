@@ -97,7 +97,9 @@ namespace computer_graphics_tomogram
 
         private void четырехугольникиToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            view.quadSwitch = false;
             switchMode = 1;
+            needReload = true;
         }
 
         private void текстуройToolStripMenuItem_Click(object sender, EventArgs e)
@@ -115,6 +117,13 @@ namespace computer_graphics_tomogram
         private void TrackBar3_Scroll(object sender, EventArgs e)
         {
             view.Width = trackBar3.Value;
+            needReload = true;
+        }
+
+        private void четырехугольникиQuadStripToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            switchMode = 1;
+            view.quadSwitch = true;
             needReload = true;
         }
     }
