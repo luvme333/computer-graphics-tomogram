@@ -77,28 +77,38 @@ namespace computer_graphics_tomogram
                     {
                         short value;
 
-                        value = Bin.array[x_coord + y_coord * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                        GL.Color3(TranserFunction(value));
-                        GL.Vertex2(x_coord, y_coord);
-
-                        value = Bin.array[x_coord + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                        GL.Color3(TranserFunction(value));
-                        GL.Vertex2(x_coord, y_coord + 1);
-
                         if ((x_coord == 0) && (y_coord == 0))
                         {
-                            value = Bin.array[x_coord + 1 + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                            GL.Color3(TranserFunction(value));
-                            GL.Vertex2(x_coord + 1, y_coord + 1);
-
-                            value = Bin.array[x_coord + 1 + y_coord * Bin.x +
+                            value = Bin.array[x_coord + y_coord * Bin.x +
                                 layerNumber * Bin.x * Bin.y];
+                            //GL.Color3(Color.DarkGreen);
                             GL.Color3(TranserFunction(value));
-                            GL.Vertex2(x_coord + 1, y_coord);
+                            GL.Vertex2(x_coord, y_coord);
+
+                            value = Bin.array[x_coord + (y_coord + 1) * Bin.x +
+                            layerNumber * Bin.x * Bin.y];
+                            //GL.Color3(Color.White);
+                            GL.Color3(TranserFunction(value));
+                            GL.Vertex2(x_coord, y_coord + 1);
                         }
+
+                        else
+                        {
+                            GL.Vertex2(x_coord, y_coord);
+                            GL.Vertex2(x_coord, y_coord + 1);
+                        }
+
+                        value = Bin.array[x_coord + 1 + y_coord * Bin.x +
+                            layerNumber * Bin.x * Bin.y];
+                        //GL.Color3(Color.Red);
+                        GL.Color3(TranserFunction(value));
+                        GL.Vertex2(x_coord + 1, y_coord);
+
+                        value = Bin.array[x_coord + 1 + (y_coord + 1) * Bin.x +
+                            layerNumber * Bin.x * Bin.y];
+                        //GL.Color3(Color.Aquamarine);
+                        GL.Color3(TranserFunction(value));
+                        GL.Vertex2(x_coord + 1, y_coord + 1);
                     }
                 GL.End();
             }
