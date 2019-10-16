@@ -34,13 +34,13 @@
             this.режимВизуализацииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.четырехугольникиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.текстуройToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.четырехугольникиQuadStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
             this.trackBar3 = new System.Windows.Forms.TrackBar();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.четырехугольникиQuadStripToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
@@ -91,16 +91,23 @@
             // четырехугольникиToolStripMenuItem
             // 
             this.четырехугольникиToolStripMenuItem.Name = "четырехугольникиToolStripMenuItem";
-            this.четырехугольникиToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.четырехугольникиToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.четырехугольникиToolStripMenuItem.Text = "Четырехугольники";
             this.четырехугольникиToolStripMenuItem.Click += new System.EventHandler(this.четырехугольникиToolStripMenuItem_Click);
             // 
             // текстуройToolStripMenuItem
             // 
             this.текстуройToolStripMenuItem.Name = "текстуройToolStripMenuItem";
-            this.текстуройToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.текстуройToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
             this.текстуройToolStripMenuItem.Text = "Текстурой";
             this.текстуройToolStripMenuItem.Click += new System.EventHandler(this.текстуройToolStripMenuItem_Click);
+            // 
+            // четырехугольникиQuadStripToolStripMenuItem
+            // 
+            this.четырехугольникиQuadStripToolStripMenuItem.Name = "четырехугольникиQuadStripToolStripMenuItem";
+            this.четырехугольникиQuadStripToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
+            this.четырехугольникиQuadStripToolStripMenuItem.Text = "Четырехугольники (QuadStrip)";
+            this.четырехугольникиQuadStripToolStripMenuItem.Click += new System.EventHandler(this.четырехугольникиQuadStripToolStripMenuItem_Click);
             // 
             // trackBar1
             // 
@@ -167,13 +174,6 @@
             this.textBox3.Size = new System.Drawing.Size(61, 13);
             this.textBox3.TabIndex = 7;
             this.textBox3.Text = "Ширина TF";
-            // 
-            // четырехугольникиQuadStripToolStripMenuItem
-            // 
-            this.четырехугольникиQuadStripToolStripMenuItem.Name = "четырехугольникиQuadStripToolStripMenuItem";
-            this.четырехугольникиQuadStripToolStripMenuItem.Size = new System.Drawing.Size(243, 22);
-            this.четырехугольникиQuadStripToolStripMenuItem.Text = "Четырехугольники (QuadStrip)";
-            this.четырехугольникиQuadStripToolStripMenuItem.Click += new System.EventHandler(this.четырехугольникиQuadStripToolStripMenuItem_Click);
             // 
             // Form1
             // 
