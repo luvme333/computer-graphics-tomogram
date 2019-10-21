@@ -20,7 +20,7 @@ namespace computer_graphics_tomogram
             GL.ShadeModel(ShadingModel.Smooth);
             GL.MatrixMode(MatrixMode.Projection);
             GL.LoadIdentity();
-            GL.Ortho(0, Bin.x, 0, Bin.z, -1, 1);
+            GL.Ortho(0, Bin.x, 0, Bin.y, -1, 1);
             GL.Viewport(0, 0, width, height);
         }
 
@@ -43,27 +43,27 @@ namespace computer_graphics_tomogram
             {
                 GL.Begin(BeginMode.Quads);
                 for (int x_coord = 0; x_coord < Bin.x - 1; x_coord++)
-                    for (int y_coord = 0; y_coord < Bin.z - 1; y_coord++)
+                    for (int y_coord = 0; y_coord < Bin.y - 1; y_coord++)
                     {
                         short value;
 
                         value = Bin.array[x_coord + y_coord * Bin.x +
-                            layerNumber * Bin.x * Bin.z];
+                            layerNumber * Bin.x * Bin.y];
                         GL.Color3(TranserFunction(value));
                         GL.Vertex2(x_coord, y_coord);
 
                         value = Bin.array[x_coord + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.z];
+                            layerNumber * Bin.x * Bin.y];
                         GL.Color3(TranserFunction(value));
                         GL.Vertex2(x_coord, y_coord + 1);
 
                         value = Bin.array[x_coord + 1 + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.z];
+                            layerNumber * Bin.x * Bin.y];
                         GL.Color3(TranserFunction(value));
                         GL.Vertex2(x_coord + 1, y_coord + 1);
 
                         value = Bin.array[x_coord + 1 + y_coord * Bin.x +
-                            layerNumber * Bin.x * Bin.z];
+                            layerNumber * Bin.x * Bin.y];
                         GL.Color3(TranserFunction(value));
                         GL.Vertex2(x_coord + 1, y_coord);
                     }
@@ -73,20 +73,20 @@ namespace computer_graphics_tomogram
             {
                 GL.Begin(BeginMode.QuadStrip);
                 for (int x_coord = 0; x_coord < Bin.x - 1; x_coord++)
-                    for (int y_coord = 0; y_coord < Bin.z - 1; y_coord++)
+                    for (int y_coord = 0; y_coord < Bin.y - 1; y_coord++)
                     {
                         short value;
 
                         if ((x_coord == 0) && (y_coord == 0))
                         {
                             value = Bin.array[x_coord + y_coord * Bin.x +
-                                layerNumber * Bin.x * Bin.z];
+                                layerNumber * Bin.x * Bin.y];
                             //GL.Color3(Color.DarkGreen);
                             GL.Color3(TranserFunction(value));
                             GL.Vertex2(x_coord, y_coord);
 
                             value = Bin.array[x_coord + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.z];
+                            layerNumber * Bin.x * Bin.y];
                             //GL.Color3(Color.White);
                             GL.Color3(TranserFunction(value));
                             GL.Vertex2(x_coord, y_coord + 1);
@@ -99,13 +99,13 @@ namespace computer_graphics_tomogram
                         }
 
                         value = Bin.array[x_coord + 1 + y_coord * Bin.x +
-                            layerNumber * Bin.x * Bin.z];
+                            layerNumber * Bin.x * Bin.y];
                         //GL.Color3(Color.Red);
                         GL.Color3(TranserFunction(value));
                         GL.Vertex2(x_coord + 1, y_coord);
 
                         value = Bin.array[x_coord + 1 + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.z];
+                            layerNumber * Bin.x * Bin.y];
                         //GL.Color3(Color.Aquamarine);
                         GL.Color3(TranserFunction(value));
                         GL.Vertex2(x_coord + 1, y_coord + 1);
@@ -143,11 +143,11 @@ namespace computer_graphics_tomogram
 
         public void generateTextureImage(int layerNumber)
         {
-            textureImage = new Bitmap(Bin.x, Bin.z);
+            textureImage = new Bitmap(Bin.x, Bin.y);
             for (int i = 0; i < Bin.x; ++i)
-               for (int j = 0; j <Bin.z; ++j)
+               for (int j = 0; j <Bin.y; ++j)
                 {
-                    int pixelNumber = i + j * Bin.x + layerNumber * Bin.x * Bin.z;
+                    int pixelNumber = i + j * Bin.x + layerNumber * Bin.x * Bin.y;
                     textureImage.SetPixel(i, j, TranserFunction(Bin.array[pixelNumber]));
                 }
         }
@@ -163,9 +163,9 @@ namespace computer_graphics_tomogram
             GL.TexCoord2(0f, 0f);
             GL.Vertex2(0, 0);
             GL.TexCoord2(0f, 1f);
-            GL.Vertex2(0, Bin.z);
+            GL.Vertex2(0, Bin.y);
             GL.TexCoord2(1f, 1f);
-            GL.Vertex2(Bin.x, Bin.z);
+            GL.Vertex2(Bin.x, Bin.y);
             GL.TexCoord2(1f, 0f);
             GL.Vertex2(Bin.x, 0);
             GL.End();
