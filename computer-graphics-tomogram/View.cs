@@ -69,7 +69,7 @@ namespace computer_graphics_tomogram
                     }
                 GL.End();
             }
-            else
+            /*else
             {
                 GL.Begin(BeginMode.QuadStrip);
                 for (int x_coord = 0; x_coord < Bin.x - 1; x_coord++)
@@ -111,7 +111,7 @@ namespace computer_graphics_tomogram
                         GL.Vertex2(x_coord + 1, y_coord + 1);
                     }
                 GL.End();
-            }
+            }*/
 
         }
 
@@ -145,7 +145,7 @@ namespace computer_graphics_tomogram
         {
             textureImage = new Bitmap(Bin.x, Bin.z);
             for (int i = 0; i < Bin.x; ++i)
-               for (int j = 0; j <Bin.z; ++j)
+               for (int j = 0; j < Bin.z; ++j)
                 {
                     int pixelNumber = i + j * Bin.x + layerNumber * Bin.x * Bin.z;
                     textureImage.SetPixel(i, j, TranserFunction(Bin.array[pixelNumber]));

@@ -11,6 +11,7 @@ namespace computer_graphics_tomogram
     {
         public static int x, y, z;
         public static short[] array;
+
         public Bin() { }
 
         public void readBin(string path)
@@ -23,12 +24,24 @@ namespace computer_graphics_tomogram
                 z = reader.ReadInt32();
 
                 int arraySize = x * y * z;
+                short[,,] arrayNEW = new short[x, y, z];
+
+                for (int k = 0; k < z; k++)
+                    for (int j = 0; j < y; j++)
+                        for (int i = 0; i < x; i++)
+                            arrayNEW[i, j, k] = reader.ReadInt16();
+
                 array = new short[arraySize];
-                for (int i = 0; i < arraySize; ++i)
-                {
-                    array[i] = reader.ReadInt16();
-                }
+                int p = 0;
+                for (int j = 0; j < y; ++j)
+                    for (int k = 0; k < z; k++)
+                        for (int i = 0; i < x; i++)
+                        {
+                            array[p] = arrayNEW[i, j, k];
+                            p++;
+                        }
             }
         }
     }
+    
 }
