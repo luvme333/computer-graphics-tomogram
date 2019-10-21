@@ -112,7 +112,6 @@ namespace computer_graphics_tomogram
                     }
                 GL.End();
             }*/
-
         }
 
         int VBOtexture;

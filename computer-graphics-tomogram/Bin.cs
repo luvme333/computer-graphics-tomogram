@@ -40,6 +40,12 @@ namespace computer_graphics_tomogram
                             array[p] = arrayNEW[i, j, k];
                             p++;
                         }
+                
+                /*array = new short[arraySize];
+                for (int i = 0; i < arraySize; ++i)
+                {
+                    array[i] = reader.ReadInt16();
+                }*/
             }
         }
     }

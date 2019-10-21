@@ -55,7 +55,7 @@ namespace computer_graphics_tomogram
                 bin.readBin(str);
                 view.setupView(glControl1.Width, glControl1.Height);
                 loaded = true;
-                trackBar1.Maximum = Bin.z - 1;
+                trackBar1.Maximum = Bin.y - 1;
                 glControl1.Invalidate();
             }
         }
