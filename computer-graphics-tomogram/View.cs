@@ -15,6 +15,7 @@ namespace computer_graphics_tomogram
         public int Minimum= 0;
         public int Width = 2000;
         public bool quadSwitch = false;
+        public int size = 50;
         public void setupView(int width, int height)
         {
             GL.ShadeModel(ShadingModel.Smooth);
@@ -41,83 +42,19 @@ namespace computer_graphics_tomogram
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             if (!quadSwitch)
             {
-                GL.Begin(BeginMode.Quads);
-                for (int x_coord = 0; x_coord < Bin.x - 1; x_coord++)
-                    for (int y_coord = 0; y_coord < Bin.y - 1; y_coord++)
-                    {
-                        short value;
-
-                        value = Bin.array[x_coord + y_coord * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                        GL.Color3(TranserFunction(value));
-                        GL.Vertex2(x_coord, y_coord);
-
-                        value = Bin.array[x_coord + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                        GL.Color3(TranserFunction(value));
-                        GL.Vertex2(x_coord, y_coord + 1);
-
-                        value = Bin.array[x_coord + 1 + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                        GL.Color3(TranserFunction(value));
-                        GL.Vertex2(x_coord + 1, y_coord + 1);
-
-                        value = Bin.array[x_coord + 1 + y_coord * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                        GL.Color3(TranserFunction(value));
-                        GL.Vertex2(x_coord + 1, y_coord);
-                    }
+                GL.Begin(BeginMode.Polygon);
+                GL.Color3(Color.Red);
+                GL.Vertex3(0.5, -0.5, 0.5);
+                GL.Vertex3(0.5, 0.5, 0.5);
+                GL.Vertex3(-0.5, 0.5, 0.5);
+                GL.Vertex3(-0.5, -0.5, 0.5);
                 GL.End();
             }
-            else
-            {
-                GL.Begin(BeginMode.QuadStrip);
-                for (int x_coord = 0; x_coord < Bin.x - 1; x_coord++)
-                    for (int y_coord = 0; y_coord < Bin.y - 1; y_coord++)
-                    {
-                        short value;
-
-                        if ((x_coord == 0) && (y_coord == 0))
-                        {
-                            value = Bin.array[x_coord + y_coord * Bin.x +
-                                layerNumber * Bin.x * Bin.y];
-                            //GL.Color3(Color.DarkGreen);
-                            GL.Color3(TranserFunction(value));
-                            GL.Vertex2(x_coord, y_coord);
-
-                            value = Bin.array[x_coord + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                            //GL.Color3(Color.White);
-                            GL.Color3(TranserFunction(value));
-                            GL.Vertex2(x_coord, y_coord + 1);
-                        }
-
-                        else
-                        {
-                            GL.Vertex2(x_coord, y_coord);
-                            GL.Vertex2(x_coord, y_coord + 1);
-                        }
-
-                        value = Bin.array[x_coord + 1 + y_coord * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                        //GL.Color3(Color.Red);
-                        GL.Color3(TranserFunction(value));
-                        GL.Vertex2(x_coord + 1, y_coord);
-
-                        value = Bin.array[x_coord + 1 + (y_coord + 1) * Bin.x +
-                            layerNumber * Bin.x * Bin.y];
-                        //GL.Color3(Color.Aquamarine);
-                        GL.Color3(TranserFunction(value));
-                        GL.Vertex2(x_coord + 1, y_coord + 1);
-                    }
-                GL.End();
-            }
-
         }
 
         int VBOtexture;
-        Bitmap textureImage;
-
+        Bitmap[] textureImage = new Bitmap[6];
+        
         public void Load2DTexture()
         {
             GL.BindTexture(TextureTarget.Texture2D, VBOtexture);
@@ -143,8 +80,9 @@ namespace computer_graphics_tomogram
 
         public void generateTextureImage(int layerNumber)
         {
-            textureImage = new Bitmap(Bin.x, Bin.y);
-            for (int i = 0; i < Bin.x; ++i)
+            for (int i = 0; i < 6; i++)
+                textureImage[i] = new Bitmap(size, size);
+                for (int i = 0; i < Bin.x; ++i)
                for (int j = 0; j <Bin.y; ++j)
                 {
                     int pixelNumber = i + j * Bin.x + layerNumber * Bin.x * Bin.y;
