@@ -49,7 +49,7 @@
             // 
             // glControl1
             // 
-            this.glControl1.BackColor = System.Drawing.Color.Black;
+            this.glControl1.BackColor = System.Drawing.Color.LightGreen;
             this.glControl1.Location = new System.Drawing.Point(18, 42);
             this.glControl1.Margin = new System.Windows.Forms.Padding(6, 8, 6, 8);
             this.glControl1.Name = "glControl1";
@@ -67,7 +67,6 @@
             this.режимВизуализацииToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1438, 33);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";

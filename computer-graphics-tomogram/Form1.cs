@@ -77,7 +77,7 @@ namespace computer_graphics_tomogram
                 }
                 if (switchMode == 1)
                 {
-                    view.DrawQuads(currentLayer);
+                    //view.DrawQuads();
                 }
                 glControl1.SwapBuffers();
             }*/
@@ -86,7 +86,7 @@ namespace computer_graphics_tomogram
             {
                 view.generateTextureImage(currentLayer);
                 view.Load2DTexture();
-                view.setupView(200, 200);
+                view.setupView(glControl1.Width, glControl1.Height);
                 view.DrawTexture();
                 glControl1.SwapBuffers();
             }
