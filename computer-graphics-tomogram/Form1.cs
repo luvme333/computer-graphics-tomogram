@@ -62,7 +62,7 @@ namespace computer_graphics_tomogram
 
         private void glControl1_Paint(object sender, PaintEventArgs e)
         {
-            if (loaded)
+            /*if (loaded)
             {
                 if (switchMode == 0)
                 {
@@ -79,7 +79,10 @@ namespace computer_graphics_tomogram
                     view.DrawQuads(currentLayer);
                 }
                 glControl1.SwapBuffers();
-            }
+            }*/
+            view.setupView(view.size, view.size);
+            view.DrawTexture();
+            glControl1.SwapBuffers();
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
