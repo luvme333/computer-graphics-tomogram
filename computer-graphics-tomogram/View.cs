@@ -15,15 +15,14 @@ namespace computer_graphics_tomogram
         public int Minimum= 0;
         public int Width = 2000;
         public bool quadSwitch = false;
-        public int size = 150, start = 100;
+        public int size = 10, start = 100;
         public void setupView(int width, int height)
         {
             GL.ShadeModel(ShadingModel.Smooth);
             GL.MatrixMode(MatrixMode.Projection);
-            //GL.Translate(100, 100, 100);
             GL.LoadIdentity();
-            GL.Ortho(0, Bin.x, 0, Bin.y, -1, 1);
-            //GL.Rotate(30, 1, 1, 0);
+            //GL.Ortho(-100, 100, -100, 100, -1000, 1000);
+            GL.Rotate(45, 1, 1, 0);
             GL.Viewport(0, 0, width, height);
         }
 
@@ -44,13 +43,7 @@ namespace computer_graphics_tomogram
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             if (!quadSwitch)
             {
-                GL.Begin(BeginMode.Polygon);
-                GL.Color3(Color.Red);
-                GL.Vertex3(0.5, -0.5, 0.5);
-                GL.Vertex3(0.5, 0.5, 0.5);
-                GL.Vertex3(-0.5, 0.5, 0.5);
-                GL.Vertex3(-0.5, -0.5, 0.5);
-                GL.End();
+                
             }
         }
 
@@ -125,14 +118,18 @@ namespace computer_graphics_tomogram
                 }
         }
 
+        int rquad = 0;
         public void DrawTexture()
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Enable(EnableCap.DepthTest);
             GL.BindTexture(TextureTarget.Texture2D, VBOtexture);
+            GL.LoadIdentity();
+            GL.Rotate(rquad, 1, 1, 1);
 
             GL.Begin(BeginMode.Quads);
             //1
+            GL.BindTexture(TextureTarget.Texture2D, 0);
             GL.Color3(Color.White);
             GL.TexCoord3(0f, 0f, 0f);
             GL.Vertex3(0, 0, 0);
@@ -142,6 +139,7 @@ namespace computer_graphics_tomogram
             GL.Vertex3(0, size, size);
             GL.TexCoord3(0f, 0f, 1f);
             GL.Vertex3(0, 0, size);
+
             //2
             GL.Color3(Color.Green);
             GL.TexCoord3(1f, 0f, 0f);
@@ -152,7 +150,9 @@ namespace computer_graphics_tomogram
             GL.Vertex3(size, size, size);
             GL.TexCoord3(1f, 1f, 0f);
             GL.Vertex3(size, size, 0);
+
             //3
+            GL.BindTexture(TextureTarget.Texture2D, 1);
             GL.Color3(Color.Red);
             GL.TexCoord3(0f, 0f, 0f);
             GL.Vertex3(0, 0, 0);
@@ -162,6 +162,7 @@ namespace computer_graphics_tomogram
             GL.Vertex3(size, 0, size);
             GL.TexCoord3(1f, 0f, 0f);
             GL.Vertex3(size, 0, 0);
+
             //4
             GL.Color3(Color.Yellow);
             GL.TexCoord3(0f, 1f, 0f);
@@ -172,7 +173,9 @@ namespace computer_graphics_tomogram
             GL.Vertex3(size, size, size);
             GL.TexCoord3(1f, 1f, 0f);
             GL.Vertex3(size, size, 0);
+
             //5
+            GL.BindTexture(TextureTarget.Texture2D, 2);
             GL.Color3(Color.Blue);
             GL.TexCoord3(0f, 0f, 0f);
             GL.Vertex3(0, 0, 0);
@@ -182,6 +185,7 @@ namespace computer_graphics_tomogram
             GL.Vertex3(size, size, 0);
             GL.TexCoord3(0f, 1f, 0f);
             GL.Vertex3(0, size, 0);
+            
             //6
             GL.Color3(Color.Orange);
             GL.TexCoord3(0f, 0f, 1f);
@@ -194,6 +198,9 @@ namespace computer_graphics_tomogram
             GL.Vertex3(0, size, size);
 
             GL.End();
+
+            GL.Flush();
+            rquad += 1;
 
             GL.Disable(EnableCap.DepthTest);
         }

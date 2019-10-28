@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OpenTK.Graphics.OpenGL;
 
 namespace computer_graphics_tomogram
 {
@@ -59,7 +60,7 @@ namespace computer_graphics_tomogram
                 glControl1.Invalidate();
             }
         }
-
+        
         private void glControl1_Paint(object sender, PaintEventArgs e)
         {
             /*if (loaded)
@@ -80,9 +81,16 @@ namespace computer_graphics_tomogram
                 }
                 glControl1.SwapBuffers();
             }*/
-            view.setupView(view.size, view.size);
-            view.DrawTexture();
-            glControl1.SwapBuffers();
+
+            if(loaded)
+            {
+                view.generateTextureImage(currentLayer);
+                view.Load2DTexture();
+                view.setupView(200, 200);
+                view.DrawTexture();
+                glControl1.SwapBuffers();
+            }
+            
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
