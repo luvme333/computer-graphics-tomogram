@@ -15,7 +15,7 @@ namespace computer_graphics_tomogram
         public int Minimum= 0;
         public int Width = 2000;
         public bool quadSwitch = false;
-        public int size = 90, start = 200;
+        public int size = 70, start = 200;
         public void setupView(int width, int height)
         {
             GL.ShadeModel(ShadingModel.Smooth);
@@ -37,52 +37,11 @@ namespace computer_graphics_tomogram
             return Color.FromArgb(255, newValue, newValue, newValue);
         }
 
-        public void DrawQuads(int layerNumber)
-        {
-            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
-            if (!quadSwitch)
-            {
-                
-            }
-        }
-
         int VBOtexture;
-        //Bitmap[] textureImage = new Bitmap[6];
         Bitmap textureImage;
 
         public void Load2DTexture()
         {
-            /*BitmapData[] data = new BitmapData[6];
-            for (VBOtexture = 0; VBOtexture < 6; VBOtexture++)
-            {
-                int i = VBOtexture;
-                GL.BindTexture(TextureTarget.Texture2D, VBOtexture);
-                data[i] = textureImage[i].LockBits(
-                new System.Drawing.Rectangle(0, 0, textureImage[i].Width, textureImage[i].Height),
-                ImageLockMode.ReadOnly,
-                System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
-                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba,
-                data[i].Width, data[i].Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra,
-                PixelType.UnsignedByte, data[i].Scan0);
-
-                textureImage[i].UnlockBits(data[i]);
-            }*/
-
-            /*for (int i = 0; i < 6; i++)
-            {
-                data[i] = textureImage[i].LockBits(
-                new System.Drawing.Rectangle(0, 0, textureImage[i].Width, textureImage[i].Height),
-                ImageLockMode.ReadOnly,
-                System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-
-                GL.TexImage2D(TextureTarget.Texture2D, 0, PixelInternalFormat.Rgba,
-                    data[i].Width, data[i].Height, 0, OpenTK.Graphics.OpenGL.PixelFormat.Bgra,
-                    PixelType.UnsignedByte, data[i].Scan0);
-
-                textureImage[i].UnlockBits(data[i]);
-
-            }*/
             GL.BindTexture(TextureTarget.Texture2D, VBOtexture);
             BitmapData data = textureImage.LockBits(
                 new System.Drawing.Rectangle(0, 0, textureImage.Width, textureImage.Height),
@@ -106,53 +65,46 @@ namespace computer_graphics_tomogram
 
         public void generateTextureImage(int layernumber)
         {
-            /*for (int q = 0; q < 6; q++)
-                textureImage[q] = new Bitmap(size, size);
+            textureImage = new Bitmap(size, size);
+            if (layernumber == 0)
             for (int i = 0; i < size; ++i)
                 for (int j = 0; j <size; ++j)
                 {
-                    textureImage[0].SetPixel(i, j, TranserFunction(Bin.arrayNEW[start, i + start, j]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[start, i + start, j]));
                 }
-            VBOtexture++;
-            for (int i = 0; i < size; ++i)
-                for (int j = 0; j < size; ++j)
-                {
-                    textureImage[1].SetPixel(i, j, TranserFunction(Bin.arrayNEW[start + size, i + start, j]));
-                }
-            VBOtexture++;
 
-            for (int i = 0; i < size; ++i)
+            if (layernumber == 1)
+                for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
                 {
-                    textureImage[2].SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, start, j]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[start + size, i + start, j]));
                 }
-            VBOtexture++;
-            for (int i = 0; i < size; ++i)
+
+            if (layernumber == 2)
+                for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
                 {
-                    textureImage[3].SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, start + size, j]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, start, j]));
                 }
-            VBOtexture++;
+            if (layernumber == 3)
+                for (int i = 0; i < size; ++i)
+                for (int j = 0; j < size; ++j)
+                {
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, start + size, j]));
+                }
 
 
-            for (int i = 0; i < size; ++i)
+            if (layernumber == 4)
+                for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
                 {
-                    textureImage[4].SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, j + start, 0]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, j + start, 0]));
                 }
-            VBOtexture++;
-            for (int i = 0; i < size; ++i)
+            if (layernumber == 5)
+                for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
                 {
-                    textureImage[5].SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, j + start, size]));
-                }
-            VBOtexture++;*/
-
-            textureImage = new Bitmap(size, size);
-            for (int i = start; i < start + size; ++i)
-                for (int j = start; j < start + size; ++j)
-                {
-                    textureImage.SetPixel(i-start, j-start, TranserFunction(Bin.arrayNEW[i, j, 20]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, j + start, size]));
                 }
         }
 
@@ -160,84 +112,116 @@ namespace computer_graphics_tomogram
 
         public void DrawTexture()
         {
-            //VBOtexture = 0;
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.Texture2D);
-            GL.BindTexture(TextureTarget.Texture2D, VBOtexture);
+            generateTextureImage(0);
+            VBOtexture = 0;
+            Load2DTexture();
+            GL.BindTexture(TextureTarget.Texture2D, 0);
             GL.Rotate(rquad, 1, 1, 1);
-          
             GL.Begin(BeginMode.Quads);          
             //1
             GL.Color3(Color.White);
-            GL.TexCoord3(0f, 0f, 0f);
+            GL.TexCoord2(1f, 1f);
             GL.Vertex3(0, 0, 0);
-            GL.TexCoord3(0f, 1f, 0f);
+            GL.TexCoord2(0f, 1f);
             GL.Vertex3(0, size, 0);
-            GL.TexCoord3(0f, 1f, 1f);
+            GL.TexCoord2(0f, 0f);
             GL.Vertex3(0, size, size);
-            GL.TexCoord3(0f, 0f, 1f);
+            GL.TexCoord2(1f, 0f);
             GL.Vertex3(0, 0, size);
+            GL.End();
 
             //2
-            GL.Color3(Color.White);
-            GL.TexCoord3(1f, 0f, 0f);
+            generateTextureImage(1);
+            VBOtexture = 1;
+            Load2DTexture();
+            GL.BindTexture(TextureTarget.Texture2D, 1);
+            GL.Begin(BeginMode.Quads);
+            GL.Color3(Color.Pink);
+            GL.TexCoord2(0f, 1f);
             GL.Vertex3(size, 0, 0);
-            GL.TexCoord3(1f, 0f, 1f);
+            GL.TexCoord2(0f, 0f);
             GL.Vertex3(size, 0, size);
-            GL.TexCoord3(1f, 1f, 1f);
+            GL.TexCoord2(1f, 0f);
             GL.Vertex3(size, size, size);
-            GL.TexCoord3(1f, 1f, 0f);
+            GL.TexCoord2(1f, 1f);
             GL.Vertex3(size, size, 0);
+            GL.End();
 
             //3
-            GL.Color3(Color.White);
-            GL.TexCoord3(0f, 0f, 0f);
-            GL.Vertex3(0, 0, 0);
-            GL.TexCoord3(0f, 0f, 1f);
-            GL.Vertex3(0, 0, size);
-            GL.TexCoord3(1f, 0f, 1f);
+            generateTextureImage(2);
+            VBOtexture = 2;
+            Load2DTexture();
+            GL.BindTexture(TextureTarget.Texture2D, 2);
+            GL.Begin(BeginMode.Quads);
+            GL.Color3(Color.Green);
+            GL.TexCoord2(1f, 1f);
             GL.Vertex3(size, 0, size);
-            GL.TexCoord3(1f, 0f, 0f);
+            GL.TexCoord2(0f, 0f);
             GL.Vertex3(size, 0, 0);
+            GL.TexCoord2(1f, 0f);
+            GL.Vertex3(0, 0, 0);
+            GL.TexCoord2(0f, 1f);
+            GL.Vertex3(0, 0, size);
+            GL.End();
 
             //4
-            GL.Color3(Color.White);
-            GL.TexCoord3(0f, 1f, 0f);
+            generateTextureImage(3);
+            VBOtexture = 3;
+            Load2DTexture();
+            GL.BindTexture(TextureTarget.Texture2D, 3);
+            GL.Begin(BeginMode.Quads);
+            GL.Color3(Color.Red);
+            GL.TexCoord2(0f, 1f);
             GL.Vertex3(0, size, 0);
-            GL.TexCoord3(0f, 1f, 1f);
+            GL.TexCoord2(0f, 0f);
             GL.Vertex3(0, size, size);
-            GL.TexCoord3(1f, 1f, 1f);
+            GL.TexCoord2(1f, 0f);
             GL.Vertex3(size, size, size);
-            GL.TexCoord3(1f, 1f, 0f);
+            GL.TexCoord2(1f, 1f);
             GL.Vertex3(size, size, 0);
+            GL.End();
 
             //5
-            GL.Color3(Color.White);
-            GL.TexCoord3(0f, 0f, 0f);
-            GL.Vertex3(0, 0, 0);
-            GL.TexCoord3(1f, 0f, 0f);
-            GL.Vertex3(size, 0, 0);
-            GL.TexCoord3(1f, 1f, 0f);
-            GL.Vertex3(size, size, 0);
-            GL.TexCoord3(0f, 1f, 0f);
-            GL.Vertex3(0, size, 0);
+            generateTextureImage(5);
+            VBOtexture = 5;
+            Load2DTexture();
+            GL.BindTexture(TextureTarget.Texture2D, 5);
+            GL.Begin(BeginMode.Quads);
+            GL.Color3(Color.Yellow);
             
+            GL.TexCoord2(0f, 0f);
+            GL.Vertex3(size, size, 0);
+            GL.TexCoord2(0f, 1f);
+            GL.Vertex3(0, size, 0);
+            GL.TexCoord2(1f, 1f);
+            GL.Vertex3(0, 0, 0);
+            GL.TexCoord2(1f, 0f);
+            GL.Vertex3(size, 0, 0);
+            GL.End();
+
             //6
-            GL.Color3(Color.White);
-            GL.TexCoord3(0f, 0f, 1f);
+            generateTextureImage(4);
+            VBOtexture = 4;
+            Load2DTexture();
+            GL.BindTexture(TextureTarget.Texture2D, 4);
+            GL.Begin(BeginMode.Quads);
+            GL.Color3(Color.Blue);
+            GL.TexCoord2(0f, 0f);
             GL.Vertex3(0, 0, size);
-            GL.TexCoord3(1f, 0f, 1f);
+            GL.TexCoord2(1f, 0f);
             GL.Vertex3(size, 0, size);
-            GL.TexCoord3(1f, 1f, 1f);
+            GL.TexCoord2(1f, 1f);
             GL.Vertex3(size, size, size);
-            GL.TexCoord3(0f, 1f, 1f);
+            GL.TexCoord2(0f, 1f);
             GL.Vertex3(0, size, size);
 
             GL.End();
 
             GL.Flush();
-            rquad += 0.5;
+            rquad += 1;
 
             GL.Disable(EnableCap.DepthTest);
             GL.Disable(EnableCap.Texture2D);

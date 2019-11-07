@@ -84,8 +84,8 @@ namespace computer_graphics_tomogram
 
             if(loaded)
             {
-                view.generateTextureImage(currentLayer);
-                view.Load2DTexture();
+                //view.generateTextureImage(0);
+                //view.Load2DTexture();
                 view.setupView(glControl1.Width, glControl1.Height);
                 view.DrawTexture();
                 glControl1.SwapBuffers();
