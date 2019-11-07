@@ -12,16 +12,17 @@ namespace computer_graphics_tomogram
 {
     class View
     {
-        public int Minimum= 0;
-        public int Width = 2000;
+        public int Minimum = 0;
+        public int Width = 200;
         public bool quadSwitch = false;
-        public int size = 70, start = 200;
+        public int size = 60, start = 250;
+        double rquad = 0;
         public void setupView(int width, int height)
         {
             GL.ShadeModel(ShadingModel.Smooth);
             GL.MatrixMode(MatrixMode.Modelview);
             GL.LoadIdentity();
-            GL.Ortho(-300, 300, -200, 200, -150, 150);
+            GL.Ortho(-size*3, size*3, -size*2, size*2, -size*1.5, size*1.5);
             GL.Viewport(0, 0, width, height);
         }
 
@@ -108,20 +109,19 @@ namespace computer_graphics_tomogram
                 }
         }
 
-        double rquad = 0;
 
         public void DrawTexture()
         {
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Enable(EnableCap.DepthTest);
             GL.Enable(EnableCap.Texture2D);
+            GL.Rotate(rquad, 1, 1, 1);
+            GL.Begin(BeginMode.Quads);
+            //1
             generateTextureImage(0);
             VBOtexture = 0;
             Load2DTexture();
             GL.BindTexture(TextureTarget.Texture2D, 0);
-            GL.Rotate(rquad, 1, 1, 1);
-            GL.Begin(BeginMode.Quads);          
-            //1
             GL.Color3(Color.White);
             GL.TexCoord2(1f, 1f);
             GL.Vertex3(0, 0, 0);
@@ -139,7 +139,7 @@ namespace computer_graphics_tomogram
             Load2DTexture();
             GL.BindTexture(TextureTarget.Texture2D, 1);
             GL.Begin(BeginMode.Quads);
-            GL.Color3(Color.Pink);
+            GL.Color3(Color.White);
             GL.TexCoord2(0f, 1f);
             GL.Vertex3(size, 0, 0);
             GL.TexCoord2(0f, 0f);
@@ -156,14 +156,14 @@ namespace computer_graphics_tomogram
             Load2DTexture();
             GL.BindTexture(TextureTarget.Texture2D, 2);
             GL.Begin(BeginMode.Quads);
-            GL.Color3(Color.Green);
-            GL.TexCoord2(1f, 1f);
+            GL.Color3(Color.White);
+            GL.TexCoord2(1f, -1f);
             GL.Vertex3(size, 0, size);
-            GL.TexCoord2(0f, 0f);
-            GL.Vertex3(size, 0, 0);
             GL.TexCoord2(1f, 0f);
+            GL.Vertex3(size, 0, 0);
+            GL.TexCoord2(0f, 0f);
             GL.Vertex3(0, 0, 0);
-            GL.TexCoord2(0f, 1f);
+            GL.TexCoord2(0f, -1f);
             GL.Vertex3(0, 0, size);
             GL.End();
 
@@ -173,7 +173,7 @@ namespace computer_graphics_tomogram
             Load2DTexture();
             GL.BindTexture(TextureTarget.Texture2D, 3);
             GL.Begin(BeginMode.Quads);
-            GL.Color3(Color.Red);
+            GL.Color3(Color.White);
             GL.TexCoord2(0f, 1f);
             GL.Vertex3(0, size, 0);
             GL.TexCoord2(0f, 0f);
@@ -185,30 +185,29 @@ namespace computer_graphics_tomogram
             GL.End();
 
             //5
-            generateTextureImage(5);
-            VBOtexture = 5;
-            Load2DTexture();
-            GL.BindTexture(TextureTarget.Texture2D, 5);
-            GL.Begin(BeginMode.Quads);
-            GL.Color3(Color.Yellow);
-            
-            GL.TexCoord2(0f, 0f);
-            GL.Vertex3(size, size, 0);
-            GL.TexCoord2(0f, 1f);
-            GL.Vertex3(0, size, 0);
-            GL.TexCoord2(1f, 1f);
-            GL.Vertex3(0, 0, 0);
-            GL.TexCoord2(1f, 0f);
-            GL.Vertex3(size, 0, 0);
-            GL.End();
-
-            //6
             generateTextureImage(4);
             VBOtexture = 4;
             Load2DTexture();
             GL.BindTexture(TextureTarget.Texture2D, 4);
             GL.Begin(BeginMode.Quads);
-            GL.Color3(Color.Blue);
+            GL.Color3(Color.White);
+            GL.TexCoord2(0f, 1f);
+            GL.Vertex3(size, size, 0);
+            GL.TexCoord2(0f, 0f);
+            GL.Vertex3(0, size, 0);
+            GL.TexCoord2(-1f, 0f);
+            GL.Vertex3(0, 0, 0);
+            GL.TexCoord2(-1f, 1f);
+            GL.Vertex3(size, 0, 0);
+            GL.End();
+
+            //6
+            generateTextureImage(5);
+            VBOtexture = 5;
+            Load2DTexture();
+            GL.BindTexture(TextureTarget.Texture2D, 5);
+            GL.Begin(BeginMode.Quads);
+            GL.Color3(Color.White);
             GL.TexCoord2(0f, 0f);
             GL.Vertex3(0, 0, size);
             GL.TexCoord2(1f, 0f);

@@ -93,13 +93,6 @@ namespace computer_graphics_tomogram
             
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            currentLayer = trackBar1.Value;
-            needReload = true;
-            /*view.DrawQuads(currentLayer);
-            glControl1.SwapBuffers();*/
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -119,11 +112,6 @@ namespace computer_graphics_tomogram
             needReload = true;
         }
 
-        private void TrackBar2_Scroll(object sender, EventArgs e)
-        {
-            view.Minimum = trackBar2.Value;
-            needReload = true;
-        }
 
         private void TrackBar3_Scroll(object sender, EventArgs e)
         {
@@ -135,6 +123,14 @@ namespace computer_graphics_tomogram
         {
             switchMode = 1;
             view.quadSwitch = true;
+            needReload = true;
+        }
+
+        private void trackBar1_Scroll_1(object sender, EventArgs e)
+        {
+            trackBar1.Minimum = 120;
+            trackBar1.Maximum = 220;
+            view.start = trackBar1.Value;
             needReload = true;
         }
     }
