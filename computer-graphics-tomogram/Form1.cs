@@ -63,34 +63,12 @@ namespace computer_graphics_tomogram
         
         private void glControl1_Paint(object sender, PaintEventArgs e)
         {
-            /*if (loaded)
-            {
-                if (switchMode == 0)
-                {
-                    if (needReload)
-                    {
-                        view.generateTextureImage(currentLayer);
-                        view.Load2DTexture();
-                        needReload = false;
-                    }
-                    view.DrawTexture();
-                }
-                if (switchMode == 1)
-                {
-                    //view.DrawQuads();
-                }
-                glControl1.SwapBuffers();
-            }*/
-
             if(loaded)
             {
-                //view.generateTextureImage(0);
-                //view.Load2DTexture();
                 view.setupView(glControl1.Width, glControl1.Height);
                 view.DrawTexture();
                 glControl1.SwapBuffers();
             }
-            
         }
 
 
@@ -129,9 +107,22 @@ namespace computer_graphics_tomogram
         private void trackBar1_Scroll_1(object sender, EventArgs e)
         {
             trackBar1.Minimum = 120;
-            trackBar1.Maximum = 220;
-            view.start = trackBar1.Value;
+            trackBar1.Maximum = 250;
+            view.start_x = trackBar1.Value;
             needReload = true;
+        }
+
+        private void trackBar2_Scroll(object sender, EventArgs e)
+        {
+            trackBar2.Minimum = 120;
+            trackBar2.Maximum = 250;
+            view.start_y = trackBar2.Value;
+            needReload = true;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

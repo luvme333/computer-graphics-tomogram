@@ -15,7 +15,7 @@ namespace computer_graphics_tomogram
         public int Minimum = 0;
         public int Width = 200;
         public bool quadSwitch = false;
-        public int size = 60, start = 250;
+        public int size = 60, start_x = 200, start_y = 200;
         double rquad = 0;
         public void setupView(int width, int height)
         {
@@ -71,27 +71,27 @@ namespace computer_graphics_tomogram
             for (int i = 0; i < size; ++i)
                 for (int j = 0; j <size; ++j)
                 {
-                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[start, i + start, j]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[start_x, i + start_y, j]));
                 }
 
             if (layernumber == 1)
                 for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
                 {
-                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[start + size, i + start, j]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[start_x + size, i + start_y, j]));
                 }
 
             if (layernumber == 2)
                 for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
                 {
-                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, start, j]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start_x, start_y, j]));
                 }
             if (layernumber == 3)
                 for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
                 {
-                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, start + size, j]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start_x, start_y + size, j]));
                 }
 
 
@@ -99,13 +99,13 @@ namespace computer_graphics_tomogram
                 for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
                 {
-                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, j + start, 0]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start_x, j + start_y, 0]));
                 }
             if (layernumber == 5)
                 for (int i = 0; i < size; ++i)
                 for (int j = 0; j < size; ++j)
                 {
-                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start, j + start, size]));
+                    textureImage.SetPixel(i, j, TranserFunction(Bin.arrayNEW[i + start_x, j + start_y, size]));
                 }
         }
 
